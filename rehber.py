@@ -23,11 +23,10 @@ acording to the data show name+surname+number
 
 '''
 import os
-import pydoc
 
 max_id = 0
 contacts = []
-haha = "./contacts"
+haha = ".\contacts"
 
 def main():
    first()
@@ -49,7 +48,7 @@ def main():
 
     elif f == 3:
       print("add contact")
-      takeinf()
+      addcon()
 
     elif f == 4:
       print("delete contact")
@@ -75,20 +74,17 @@ def takeinf():
     if len(str(number)) < 10:
         print("Please enter a valid phone number.")
         continue
-
-    else :
-      print("Contact added succesfully. Please check your Contacts.")
-      break
-
-    return {"name": name, "surname": sname, "number": number}
+    else:
+        break
+  return {"name": name, "surname": sname, "number": number}
 
 def addcon():
   global max_id
-  contact = (takeinf())
+  contact = takeinf()
   ID = max_id +1
   max_id = ID
-  contact [ id ]= ID
-  with open(f"{haha}/ID", "w") as f:
+  contact [" id" ]= ID
+  with open(f"{haha}\{ID}", "w") as f:
     f.write(contact["name"] + "\n")
     f.write(contact["surname"] + "\n")
     f.write(contact["number"] + "\n")
@@ -100,18 +96,18 @@ def first():
 
   try:
     for i in os.listdir(haha):
-      with open (f"(haha)"/"{i}", "r") as f:
-        name, sname, number =f.readlines
+      with open (f"{haha}\{i}", "r") as f:
+        name, sname, number = f.readlines
         contacts.append ( {"name" : name.strip(), "surname" : sname.strip(), "number" : number.strip(), "ID" : int(i) }); 
-
+        if int(i) > max_id:
+            int(i) = max_id
   except ValueError:
     print("Corrupt database files...")
     exit(1)
 
   except FileNotFoundError:
     os.mkdir(haha)
-
-
+    
 def viewcon():
     pass
 
