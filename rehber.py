@@ -26,7 +26,7 @@ import os
 
 max_id = 0
 contacts = []
-haha = ".\contacts"
+ROOT_F = ".\contacts"
 
 def main():
    first()
@@ -84,7 +84,7 @@ def addcon():
   ID = max_id +1
   max_id = ID
   contact [" id" ]= ID
-  with open(f"{haha}\{ID}", "w") as f:
+  with open(f"{ROOT_F}\{ID}", "w") as f:
     f.write(contact["name"] + "\n")
     f.write(contact["surname"] + "\n")
     f.write(contact["number"] + "\n")
@@ -95,8 +95,8 @@ def first():
   global max_id
 
   try:
-    for i in os.listdir(haha):
-      with open (f"{haha}\{i}", "r") as f:
+    for i in os.listdir(ROOT_F):
+      with open (f"{ROOT_F}\{i}", "r") as f:
         name, sname, number = f.readlines
         contacts.append ( {"name" : name.strip(), "surname" : sname.strip(), "number" : number.strip(), "ID" : int(i) }); 
         if int(i) > max_id:
@@ -106,7 +106,7 @@ def first():
     exit(1)
 
   except FileNotFoundError:
-    os.mkdir(haha)
+    os.mkdir(ROOT_F)
     
 def viewcon():
     pass
